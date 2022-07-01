@@ -5,5 +5,5 @@ import App from './App'
 test('component App', ()=> {
     const {getByText} = render(<App/>)
 
-    expect(getByText(/hello world/i)).toBeTruthy()
+    expect(getByText(/hello world/i)).toHaveAttribute('class', 'test')
 })
