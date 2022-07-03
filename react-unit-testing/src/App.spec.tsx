@@ -13,12 +13,19 @@ describe('App Component', ()=>{
         expect(getByText(/Maria/i)).toBeInTheDocument()
     })
 
-    it('should be able to add new item to the list', ()=> {
-        const {getByText} = render(<App/>)
+    it('should be able to add new item to the list', async ()=> {
+        const {getByText, getByPlaceholderText, debug} = render(<App/>)
 
+        const user = userEvent.setup()
+
+        // debug()
+        const inputElement = getByPlaceholderText('Novo item')
         const addButton = getByText('Adicionar')
 
-        userEvent.click(addButton)
+        // debug()
+        
+        await user.type(inputElement, 'Novo')
+        await user.click(addButton)
 
         expect(getByText('Novo')).toBeInTheDocument()
     })
