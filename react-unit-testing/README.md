@@ -1,0 +1,8 @@
+- Testing DOM:
+  - debug;
+  - rerender with new prop
+- Mocking API calls (msw)
+- Spies
+- Context (wrapper on render)
+- Firing events
+- Testing async actions
