@@ -28,7 +28,7 @@ function App() {
         {list.map(item => (
           <li key={item}>
             {item}
-            <button onClick={() => removeFromList(item)}></button>
+            <button onClick={() => removeFromList(item)}>Remover</button>
           </li>))}
       </ul>
     </>
