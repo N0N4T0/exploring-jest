@@ -45,6 +45,20 @@ describe('App Component', ()=>{
             return getByText('Diego')
         })
     })
+
+    it('seconde test remove, should be able to remove item from the list', async ()=> {
+        const {queryByText, getAllByText} = render(<App/>)
+
+        const UserEvent = userEvent.setup()
+
+        const removeButtons = getAllByText('Remover')
+
+        await UserEvent.click(removeButtons[0])
+
+        await waitFor(() => {
+            expect(queryByText('Diego')).not.toBeInTheDocument()
+        })
+    })
 })
 
 // geralmente quando vamos criar vários testes para uma unidade, começamos com describe
