@@ -1,12 +1,12 @@
 import {render, waitFor, waitForElementToBeRemoved} from '@testing-library/react'
 // render permite importar o componente 
-import App from './App'
+import List from './List'
 
 import userEvent from '@testing-library/user-event'
 
-describe('App Component', ()=>{
+describe('List Component', ()=>{
     it('should render list items', ()=> {
-        const {getByText} = render(<App/>)
+        const {getByText} = render(<List initialItems={['Diego', 'Lucas', 'Maria']}/>)
 
         expect(getByText(/Diego/i)).toBeInTheDocument()
         expect(getByText(/Lucas/i)).toBeInTheDocument()
@@ -14,7 +14,7 @@ describe('App Component', ()=>{
     })
 
     it('should be able to add new item to the list', async ()=> {
-        const {getByText, getByPlaceholderText, debug} = render(<App/>)
+        const {getByText, getByPlaceholderText, debug} = render(<List initialItems={[]}/>)
 
         const user = userEvent.setup()
 
@@ -33,7 +33,7 @@ describe('App Component', ()=>{
     })
 
     it('should be able to remove item from the list', async ()=> {
-        const {getByText, getAllByText} = render(<App/>)
+        const {getByText, getAllByText} = render(<List initialItems={['Diego']}/>)
 
         const UserEvent = userEvent.setup()
 
@@ -47,7 +47,7 @@ describe('App Component', ()=>{
     })
 
     it('seconde test remove, should be able to remove item from the list', async ()=> {
-        const {queryByText, getAllByText} = render(<App/>)
+        const {queryByText, getAllByText} = render(<List initialItems={['Diego']}/>)
 
         const UserEvent = userEvent.setup()
 
