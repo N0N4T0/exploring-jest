@@ -14,7 +14,7 @@ describe('App Component', ()=>{
     })
 
     it('should be able to add new item to the list', async ()=> {
-        const {getByText, getByPlaceholderText, debug} = render(<App/>)
+        const {getByText, getByPlaceholderText, debug, findByText} = render(<App/>)
 
         const user = userEvent.setup()
 
@@ -27,7 +27,7 @@ describe('App Component', ()=>{
         await user.type(inputElement, 'Novo')
         await user.click(addButton)
 
-        expect(getByText('Novo')).toBeInTheDocument()
+        expect(await findByText('Novo')).toBeInTheDocument()
     })
 })
 
