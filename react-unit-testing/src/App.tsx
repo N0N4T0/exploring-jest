@@ -4,9 +4,14 @@ function App() {
   const [newItem, setNewItem] = useState('')
   const [list, setList] = useState(['Diego', 'Lucas', 'Maria'])
 
+  // Simular chamada api passou um setTimeout
   function addToList(){
-    setList(state => [...state, 'Novo'])
+    setTimeout(() => {
+      setList(state => [...state, 'Novo'])
+
+    }, 500)
   }
+
 
   return (
     <>

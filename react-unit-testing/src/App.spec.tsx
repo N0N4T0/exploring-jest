@@ -1,4 +1,4 @@
-import {render} from '@testing-library/react'
+import {render, waitFor} from '@testing-library/react'
 // render permite importar o componente 
 import App from './App'
 
@@ -14,7 +14,7 @@ describe('App Component', ()=>{
     })
 
     it('should be able to add new item to the list', async ()=> {
-        const {getByText, getByPlaceholderText, debug, findByText} = render(<App/>)
+        const {getByText, getByPlaceholderText, debug} = render(<App/>)
 
         const user = userEvent.setup()
 
@@ -27,7 +27,10 @@ describe('App Component', ()=>{
         await user.type(inputElement, 'Novo')
         await user.click(addButton)
 
-        expect(await findByText('Novo')).toBeInTheDocument()
+        await waitFor(() => {
+            expect(getByText('Novo')).toBeInTheDocument()
+        })
+
     })
 })
 
@@ -42,3 +45,6 @@ describe('App Component', ()=>{
 
 // A vantagem de não quebrar o teste é que as vezes você quer testar que o elemento
 // não está lá. Exemplo usaria o query
+
+// waitFor = fica rodando um loop esperando até que o valor seja válido, e pode
+//  ser passado um intervalo para saber de quanto em quanto minha codição pode ser satisfeita
