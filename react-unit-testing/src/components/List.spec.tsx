@@ -5,12 +5,19 @@ import List from './List'
 import userEvent from '@testing-library/user-event'
 
 describe('List Component', ()=>{
-    it('should render list items', ()=> {
-        const {getByText} = render(<List initialItems={['Diego', 'Lucas', 'Maria']}/>)
+    it('should render list items', async ()=> {
+        const {getByText, queryByText, rerender} = render(<List initialItems={['Diego', 'Lucas', 'Maria']}/>)  
 
-        expect(getByText(/Diego/i)).toBeInTheDocument()
-        expect(getByText(/Lucas/i)).toBeInTheDocument()
-        expect(getByText(/Maria/i)).toBeInTheDocument()
+        expect(getByText('Diego')).toBeInTheDocument()
+        expect(getByText('Lucas')).toBeInTheDocument()
+        expect(getByText('Maria')).toBeInTheDocument()
+
+        rerender(<List initialItems={['Julia']}/>)
+
+        await waitFor(() => {
+            // expect(getByText('Julia')).toBeInTheDocument()
+            expect(queryByText('Mayk')).not.toBeInTheDocument()
+        })
     })
 
     it('should be able to add new item to the list', async ()=> {
@@ -46,7 +53,7 @@ describe('List Component', ()=>{
         })
     })
 
-    it('seconde test remove, should be able to remove item from the list', async ()=> {
+    it('second test remove, should be able to remove item from the list', async ()=> {
         const {queryByText, getAllByText} = render(<List initialItems={['Diego']}/>)
 
         const UserEvent = userEvent.setup()
@@ -75,3 +82,8 @@ describe('List Component', ()=>{
 
 // waitFor = fica rodando um loop esperando até que o valor seja válido, e pode
 //  ser passado um intervalo para saber de quanto em quanto minha codição pode ser satisfeita
+
+// o get quando tem mais de uma elemetno que satosfaz a condição ele falha também.
+
+// rerender = ree rendereiza o componente novamente permite passar a propriedade que eu informei para ele
+// deixando assim dinâmico
