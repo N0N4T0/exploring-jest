@@ -5,7 +5,11 @@ import { Formulario } from "./Formulario";
 
 describe('Testing component Formulario', () => {
   test('quando o input estiver vazio, novos participantes não podem ser adicionados', () => {
-    render(<Formulario />)
+    render(
+      <RecoilRoot>
+        <Formulario />
+      </RecoilRoot>
+    )
 
     const input = screen.getByPlaceholderText("Insira os nomes dos participantes")
 
@@ -13,7 +17,6 @@ describe('Testing component Formulario', () => {
     const botao = screen.getByRole('button')
 
     expect(input).toBeInTheDocument()
-
     expect(botao).toBeDisabled()
   })
 
@@ -25,8 +28,6 @@ describe('Testing component Formulario', () => {
     )
 
     const input = screen.getByPlaceholderText("Insira os nomes dos participantes")
-
-
     const botao = screen.getByRole('button')
 
     fireEvent.change(input, {
@@ -38,7 +39,36 @@ describe('Testing component Formulario', () => {
     fireEvent.click(botao)
 
     expect(input).toHaveFocus()
-
     expect(input).toHaveValue("")
+  })
+
+  test("nomes duplicados não podem ser adicionados na lista", () => {
+    render(
+      <RecoilRoot>
+        <Formulario />
+      </RecoilRoot>
+    )
+
+    const input = screen.getByPlaceholderText("Insira os nomes dos participantes")
+    const botao = screen.getByRole('button')
+
+    fireEvent.change(input, {
+      target: {
+        value: 'Ana Catarina'
+      }
+    })
+
+    fireEvent.click(botao)
+
+    fireEvent.change(input, {
+      target: {
+        value: 'Ana Catarina'
+      }
+    })
+
+    fireEvent.click(botao)
+
+    const mensagemDeErro = screen.getByRole('alert')
+    expect(mensagemDeErro.textContent).toBe('Nomes duplicados não são permitidos!')
   })
 })
