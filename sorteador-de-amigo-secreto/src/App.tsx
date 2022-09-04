@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import './App.css';
 import { Formulario } from './components/Formulario';
 
 function App() {
