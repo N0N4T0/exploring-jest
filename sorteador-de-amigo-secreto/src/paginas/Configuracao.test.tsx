@@ -23,5 +23,8 @@ describe('a pagina de configuracao', () => {
     //teste de snapshot: a primeira vez que rodamos a foto é tirada
     // nas demais vezes a foto é comparada.
     expect(container).toMatchSnapshot()
+
+    // Press w para exibir opcoes no test.
+    // Press u to update failing snapshots.
   })
 })
