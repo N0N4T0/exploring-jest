@@ -12,7 +12,6 @@ jest.mock('react-router-dom', () => {
 })
 
 describe('a pagina de configuracao', () => {
-
   test('deve ser renderizada corretamente', () => {
     const { container } = render(
       <RecoilRoot>

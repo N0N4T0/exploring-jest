@@ -10,25 +10,36 @@ exports[`a pagina de configuracao deve ser renderizada corretamente 1`] = `
         Vamos começar
       </h2>
       <form>
-        <input
-          placeholder="Insira os nomes dos participantes"
-          type="text"
-          value=""
-        />
-        <button
-          disabled=""
+        <div
+          class="grupo-input-btn"
         >
-          Adicionar
-        </button>
+          <input
+            placeholder="Insira os nomes dos participantes"
+            type="text"
+            value=""
+          />
+          <button
+            disabled=""
+          >
+            Adicionar
+          </button>
+        </div>
         
       </form>
       <ul />
-      <footer>
+      <footer
+        class="rodap-configuracoes"
+      >
         <button
+          class="botao"
           disabled=""
         >
           Iniciar bricadeira
         </button>
+        <img
+          alt="Sacolas de compras"
+          src="/imagens/sacolas.png"
+        />
       </footer>
     </section>
   </div>

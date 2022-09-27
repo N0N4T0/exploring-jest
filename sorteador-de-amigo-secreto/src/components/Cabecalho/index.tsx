@@ -1,6 +1,6 @@
 import './styles.css'
 
-export function Cabecalho() {
+const Cabecalho = () => {
   return (
     <header className="cabecalho">
       <div className="imagem-logo" role='img' aria-label='Logo do Sorteador'>
@@ -9,3 +9,5 @@ export function Cabecalho() {
     </header>
   )
 }
+
+export default Cabecalho
