@@ -1,6 +1,5 @@
 const { render, screen } = require("@testing-library/react")
 
-import userEvent from '@testing-library/user-event'
 import Extrato from './index'
 
 
